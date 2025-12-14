@@ -20,10 +20,8 @@ services:
     healthCheckPath: /api/health
     
   # Frontend Static Site
-  - type: web
+  - type: static
     name: stock-trend-frontend
-    env: static
-    region: oregon
     plan: free
     buildCommand: "cd frontend && npm install && npm run build"
     staticPublishPath: frontend/dist
