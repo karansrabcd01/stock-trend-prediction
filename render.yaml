@@ -1,5 +1,6 @@
 # Render Blueprint for Stock Trend Prediction AI
-# This file configures deployment for both backend and frontend on Render.com
+# This file configures deployment for the backend API on Render.com
+# Frontend will be deployed separately as a Static Site
 
 services:
   # Backend API Service
@@ -18,15 +19,3 @@ services:
       - key: CORS_ORIGINS
         value: "*"
     healthCheckPath: /api/health
-    
-  # Frontend Static Site
-  - type: web
-    name: stock-trend-frontend
-    env: static
-    plan: free
-    buildCommand: "cd frontend && npm install && npm run build"
-    staticPublishPath: frontend/dist
-    pullRequestPreviewsEnabled: true
-    envVars:
-      - key: VITE_API_URL
-        sync: false
