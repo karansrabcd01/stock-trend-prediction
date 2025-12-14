@@ -25,7 +25,8 @@ class Settings:
     
     # Model Paths
     BASE_DIR: Path = Path(__file__).parent.parent
-    MODEL_DIR: Path = BASE_DIR.parent / "models"
+    # For Render deployment, models are in the parent directory of backend
+    MODEL_DIR: Path = BASE_DIR.parent / "models" if (BASE_DIR.parent / "models").exists() else Path("/opt/render/project/src/models")
     
     MODEL_PATH: str = str(MODEL_DIR / "optimized_stock_model.h5")
     SCALER_PATH: str = str(MODEL_DIR / "optimized_scaler.pkl")
