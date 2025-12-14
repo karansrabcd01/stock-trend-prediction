@@ -20,15 +20,13 @@ services:
     healthCheckPath: /api/health
     
   # Frontend Static Site
-  - type: static
+  - type: web
     name: stock-trend-frontend
+    env: static
     plan: free
     buildCommand: "cd frontend && npm install && npm run build"
     staticPublishPath: frontend/dist
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
+    pullRequestPreviewsEnabled: true
     envVars:
       - key: VITE_API_URL
         sync: false
